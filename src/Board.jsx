@@ -5,14 +5,15 @@ const Board = ({ xMove, currentMoves, updateBoard }) => {
     let status;
     const handleClick = (i) => {
         if (getWinner(currentMoves) || currentMoves[i]) return;
+        const newMoves = currentMoves.slice();
 
         if (xMove) {
-            currentMoves[i] = 'X';
+            newMoves[i] = 'X';
         } else {
-            currentMoves[i] = 'O';
+            newMoves[i] = 'O';
         }
 
-        updateBoard(currentMoves);
+        updateBoard(newMoves);
     }
 
     const winner = getWinner(currentMoves);

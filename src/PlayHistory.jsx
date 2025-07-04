@@ -1,15 +1,17 @@
-const PlayHistory = ({ moves }) => {
+const PlayHistory = ({ history, rewindMove }) => {
     return (
         <div className="game-info">
             <ol>
-                {moves.map((v, i) => {
+                {history.map((v, i) => {
                     const description = i > 0 ?
                         `Go to move #${i}` :
                         "Go to game start";
 
                     return (
-                        <li>
-                            <button >{description}</button>
+                        <li key={i}>
+                            <button onClick={() => rewindMove(i)}>
+                                {description}
+                            </button>
                         </li>
                     );
                 })}
