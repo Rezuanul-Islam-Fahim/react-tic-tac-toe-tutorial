@@ -1,16 +1,21 @@
 import SquareButton from "./SquareButton";
 import { getWinner } from "./helpers.js";
 
-const Board = ({ xMove, moves, updateMove }) => {
+const Board = ({ xMove, currentMoves, updateBoard }) => {
     let status;
     const handleClick = (i) => {
-        if (getWinner(moves) || moves[i]) return;
+        if (getWinner(currentMoves) || currentMoves[i]) return;
 
-        updateMove(i);
+        if (xMove) {
+            currentMoves[i] = 'X';
+        } else {
+            currentMoves[i] = 'O';
+        }
+
+        updateBoard(currentMoves);
     }
 
-    const winner = getWinner(moves);
-
+    const winner = getWinner(currentMoves);
     if (winner) {
         status = "Winner: " + winner;
     } else {
@@ -21,19 +26,19 @@ const Board = ({ xMove, moves, updateMove }) => {
         <div>
             <div className="status">{status}</div>
             <div className="board-row">
-                <SquareButton value={moves[0]} onClick={() => handleClick(0)} />
-                <SquareButton value={moves[1]} onClick={() => handleClick(1)} />
-                <SquareButton value={moves[2]} onClick={() => handleClick(2)} />
+                <SquareButton value={currentMoves[0]} onClick={() => handleClick(0)} />
+                <SquareButton value={currentMoves[1]} onClick={() => handleClick(1)} />
+                <SquareButton value={currentMoves[2]} onClick={() => handleClick(2)} />
             </div>
             <div className="board-row">
-                <SquareButton value={moves[3]} onClick={() => handleClick(3)} />
-                <SquareButton value={moves[4]} onClick={() => handleClick(4)} />
-                <SquareButton value={moves[5]} onClick={() => handleClick(5)} />
+                <SquareButton value={currentMoves[3]} onClick={() => handleClick(3)} />
+                <SquareButton value={currentMoves[4]} onClick={() => handleClick(4)} />
+                <SquareButton value={currentMoves[5]} onClick={() => handleClick(5)} />
             </div>
             <div className="board-row">
-                <SquareButton value={moves[6]} onClick={() => handleClick(6)} />
-                <SquareButton value={moves[7]} onClick={() => handleClick(7)} />
-                <SquareButton value={moves[8]} onClick={() => handleClick(8)} />
+                <SquareButton value={currentMoves[6]} onClick={() => handleClick(6)} />
+                <SquareButton value={currentMoves[7]} onClick={() => handleClick(7)} />
+                <SquareButton value={currentMoves[8]} onClick={() => handleClick(8)} />
             </div>
         </div>
     );

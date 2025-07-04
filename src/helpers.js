@@ -1,4 +1,4 @@
-export const getWinner = (moves) => {
+export const getWinner = (move) => {
     const winnerList = [
         [0, 1, 2],
         [3, 4, 5],
@@ -13,8 +13,8 @@ export const getWinner = (moves) => {
     for (let i = 0; i < winnerList.length; i++) {
         const [a, b, c] = winnerList[i];
 
-        if (moves[a] && moves[a] === moves[b] && moves[a] === moves[c]) {
-            return moves[a];
+        if (move[a] && move[a] === move[b] && move[a] === move[c]) {
+            return move[a];
         }
     }
 
