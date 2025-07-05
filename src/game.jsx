@@ -5,7 +5,6 @@ import PlayHistory from "./PlayHistory";
 const Game = () => {
     const [history, setHistory] = useState([Array(9).fill(null)]);
     const [currentPlay, setCurrentPlay] = useState(0);
-    const xMove = currentPlay % 2 === 0;
     const currentMoves = history[currentPlay];
 
     const updateBoard = (e) => {
@@ -20,7 +19,7 @@ const Game = () => {
 
     return (
         <div className="game">
-            <Board xMove={xMove}
+            <Board currentPlay={currentPlay}
                 currentMoves={currentMoves}
                 updateBoard={updateBoard} />
             <PlayHistory history={history} rewindMove={rewindMove} />

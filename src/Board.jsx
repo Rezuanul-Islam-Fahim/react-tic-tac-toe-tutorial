@@ -1,7 +1,8 @@
 import SquareButton from "./SquareButton";
 import { getWinner } from "./helpers.js";
 
-const Board = ({ xMove, currentMoves, updateBoard }) => {
+const Board = ({ currentPlay, currentMoves, updateBoard }) => {
+    const xMove = currentPlay % 2 === 0;
     let status;
     const handleClick = (i) => {
         if (getWinner(currentMoves) || currentMoves[i]) return;
@@ -20,7 +21,11 @@ const Board = ({ xMove, currentMoves, updateBoard }) => {
     if (winner) {
         status = "Winner: " + winner;
     } else {
-        status = "Next move: " + (xMove ? "X" : "O");
+        if (currentPlay !== 9) {
+            status = "Next move: " + (xMove ? "X" : "O");
+        } else {
+            status = "Match drawn";
+        }
     }
 
     return (
