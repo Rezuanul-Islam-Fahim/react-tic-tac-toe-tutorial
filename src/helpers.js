@@ -20,3 +20,18 @@ export const getWinner = (move) => {
 
     return null;
 }
+
+export const getCurrentPos = (history, ind) => {
+    if (ind === 0) return null;
+
+    const movePrev = history[ind - 1];
+    const currMove = history[ind];
+
+    for (let i = 0; i < currMove.length; i++) {
+        if (movePrev[i] !== currMove[i]) {
+            const row = Math.floor(i / 3) + 1;
+            const column = i % 3 + 1;
+            return ` (${row}, ${column})`;
+        }
+    }
+}

@@ -32,12 +32,13 @@ const Board = ({ currentPlay, currentMoves, updateBoard }) => {
         <div>
             <div className="status">{status}</div>
             {Array(3).fill(null).map((_, i) => (
-                <div className="board-row">
+                <div key={i} className="board-row">
                     {Array(3).fill(null).map((_, j) => {
                         const index = i * 3 + j;
 
                         return (
                             <SquareButton
+                                key={index}
                                 value={currentMoves[index]}
                                 onClick={() => handleClick(index)} />
                         );
