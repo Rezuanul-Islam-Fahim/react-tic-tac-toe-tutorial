@@ -6,9 +6,13 @@ const PlayHistory = ({ history, rewindMove }) => {
             <ol>
                 {history.map((v, i) => {
                     const currentPos = getCurrentPos(history, i);
-                    const description = i > 0 ?
-                        `Go to move #${i}${currentPos}` :
+                    let description = i > 0 ?
+                        `Go to move #${i}` :
                         "Go to game start";
+
+                    if (currentPos) {
+                        description += ` (${currentPos.row}, ${currentPos.column})`
+                    }
 
                     return (
                         <li key={i}>

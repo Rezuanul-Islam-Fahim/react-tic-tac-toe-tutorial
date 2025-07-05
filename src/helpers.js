@@ -31,7 +31,7 @@ export const getCurrentPos = (history, ind) => {
         if (movePrev[i] !== currMove[i]) {
             const row = Math.floor(i / 3) + 1;
             const column = i % 3 + 1;
-            return ` (${row}, ${column})`;
+            return { row, column };
         }
     }
 }
