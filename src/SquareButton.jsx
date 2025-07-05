@@ -1,7 +1,8 @@
-const SquareButton = ({ isActive, value, onClick }) => {
+const SquareButton = ({ isActive, win, value, onClick }) => {
     let buttonStyle = "square";
 
-    if (isActive) buttonStyle += " square-active";
+    if (win) buttonStyle += " square-win";
+    else if (isActive) buttonStyle += " square-active";
 
     return (
         <button className={buttonStyle} onClick={onClick}>

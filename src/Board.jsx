@@ -1,11 +1,12 @@
 import SquareButton from "./SquareButton";
-import { getCurrentPos, getWinner } from "./helpers.js";
+import { getCurrentPos, getWinner, getWinnerBoard } from "./helpers.js";
 
 const Board = ({ currentPlay, history, updateBoard }) => {
     let status;
     const currentMoves = history[currentPlay];
     const xMove = currentPlay % 2 === 0;
     const latestMove = getCurrentPos(history, currentPlay);
+    const winnerBoard = getWinnerBoard(currentMoves);
 
     const handleClick = (i) => {
         if (getWinner(currentMoves) || currentMoves[i]) return;
@@ -41,11 +42,13 @@ const Board = ({ currentPlay, history, updateBoard }) => {
                         const isActive = latestMove &&
                             latestMove.row - 1 == i &&
                             latestMove.column - 1 == j;
+                        const win = winnerBoard && winnerBoard.find(v => v == index) != null;
 
                         return (
                             <SquareButton
                                 key={index}
                                 isActive={isActive}
+                                win={win}
                                 value={currentMoves[index]}
                                 onClick={() => handleClick(index)} />
                         );
